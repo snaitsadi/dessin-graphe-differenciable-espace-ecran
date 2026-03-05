@@ -54,3 +54,10 @@ class DifferentiableRenderer:
             edge_seg = torch.exp(-dist2 / (2 * self.sigma_edge**2))
             edge_img += edge_seg
         return edge_img
+
+
+    def render(self, pos, edges):
+        """Rendu combiné nœuds + arêtes."""
+        node_img = self.render_nodes(pos)
+        edge_img = self.render_edges(pos, edges)
+        return node_img + edge_img
